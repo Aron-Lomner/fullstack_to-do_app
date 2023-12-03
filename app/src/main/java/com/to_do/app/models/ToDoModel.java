@@ -1,14 +1,21 @@
 package com.to_do.app.models;
 
+import com.to_do.app.dto.incoming.ToDoDto;
 
 import jakarta.persistence.Entity;
 
 @Entity
-public class ToDoModel extends BaseModel{
+public class ToDoModel extends BaseModel {
     private String taskName;
     private boolean completed;
-    
+
     public ToDoModel() {
+    }
+
+    public ToDoModel(ToDoDto dto) {
+        super(dto);
+        this.taskName = dto.getTaskName();
+        this.completed = dto.isCompleted();
     }
 
     public ToDoModel(String taskName, boolean completed) {
@@ -32,5 +39,4 @@ public class ToDoModel extends BaseModel{
         this.completed = completed;
     }
 
-    
 }

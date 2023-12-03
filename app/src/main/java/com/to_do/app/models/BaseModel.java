@@ -1,5 +1,7 @@
 package com.to_do.app.models;
 
+import com.to_do.app.dto.incoming.BaseDto;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
@@ -11,6 +13,10 @@ public abstract class BaseModel {
     private long id;
 
     public BaseModel() {
+    }
+
+    public BaseModel(BaseDto dto) {
+        this.id = dto.getId();
     }
 
     public BaseModel(long id) {
