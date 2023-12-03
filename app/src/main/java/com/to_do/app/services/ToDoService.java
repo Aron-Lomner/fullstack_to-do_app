@@ -23,6 +23,16 @@ public class ToDoService {
         return new ToDoDto(toDoRepository.save(new ToDoModel(dto)));
     }
 
+    public boolean updateToDo(ToDoDto dto) {
+        ToDoModel model = new ToDoModel(dto);
+        boolean updated = false;
+        if (getToDoDtoById(model.getId()) != null) {
+            toDoRepository.save(model);
+            updated = true;
+        }
+        return updated;
+    }
+
     public List<ToDoDto> getAllToDos() {
         Iterable<ToDoModel> models = toDoRepository.findAll();
         ArrayList<ToDoDto> dtos = new ArrayList<>();
@@ -46,5 +56,5 @@ public class ToDoService {
         toDoRepository.deleteById(id);
         return exist;
     }
-    
+
 }
